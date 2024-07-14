@@ -1,6 +1,15 @@
 import express from 'express';
 import cors from 'cors';
-import db from './db';
+import authRoutes from './routes/auth';
+import dotenv from 'dotenv';
+
+dotenv.config();
+
+console.log('Environment Variables:', {
+  PORT: process.env.PORT,
+  DATABASE_URL: process.env.DATABASE_URL,
+  JWT_SECRET: process.env.JWT_SECRET,
+});  // This should print all the environment variables
 
 const app = express();
 app.use(cors());
@@ -12,20 +21,7 @@ app.get('/', (req, res) => {
   res.send('Smart Meal Service API');
 });
 
-app.get('/api/test-db', async (req, res) => {
-  try {
-    const result = await db.query('SELECT NOW()');
-    res.json(result.rows);
-  } catch (err: unknown) {
-    if (err instanceof Error) {
-      console.error('Error message:', err.message);
-      console.error('Stack trace:', err.stack);
-    } else {
-      console.error('Unexpected error', err);
-    }
-    res.status(500).send('Server Error');
-  }
-});
+app.use('/api/auth', authRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
