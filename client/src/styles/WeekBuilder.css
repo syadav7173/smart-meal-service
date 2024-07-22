@@ -1,0 +1,37 @@
+.week-builder {
+    padding: 20px;
+  }
+  
+  .week-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 10px;
+  }
+  
+  .day-column {
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
+  .day-column h2 {
+    margin-top: 0;
+  }
+  
+  .day-column button {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .day-column ul {
+    list-style-type: none;
+    padding-left: 0;
+  }
+  
+  .day-column li {
+    background: #f5f5f5;
+    margin-bottom: 5px;
+    padding: 5px;
+    border-radius: 3px;
+  }
+  

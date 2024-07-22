@@ -1,25 +1,22 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 
 const Login: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
+  const { handleLogin } = useAuth();
 
-  const handleLogin = async (e: React.FormEvent) => {
+  const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const res = await axios.post('http://localhost:5001/api/auth/login', {
-        email,
-        password,
-      });
-
-      localStorage.setItem('token', res.data.token);
+      await handleLogin(email, password);
       navigate('/home');
     } catch (err) {
-      setError('Invalid Credentials');
+      setError('Login failed. Please check your credentials.');
     }
   };
 
@@ -27,7 +24,7 @@ const Login: React.FC = () => {
     <div>
       <h2>Login</h2>
       {error && <p>{error}</p>}
-      <form onSubmit={handleLogin}>
+      <form onSubmit={onSubmit}>
         <div>
           <label>Email</label>
           <input
@@ -46,6 +43,7 @@ const Login: React.FC = () => {
         </div>
         <button type="submit">Login</button>
       </form>
+      <Link to="/register">Don't have an account? Register here</Link>
     </div>
   );
 };

@@ -1,24 +1,27 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
+import Home from './components/Home';
 import Register from './components/Register';
 import Login from './components/Login';
-import Home from './components/Home';
+import Ingredients from './components/Ingredients';
+import Meals from './components/Meals';
 
 const App: React.FC = () => {
   return (
-    <AuthProvider>
-      <Router>
-        <div className="App">
-          <Routes>
-            <Route path="/register" element={<Register />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/home" element={<Home />} />
-          </Routes>
-        </div>
-      </Router>
-    </AuthProvider>
+    <Router>
+      <AuthProvider>
+        <Routes>
+          <Route path="/home" element={<Home />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/ingredients" element={<Ingredients />} />
+          <Route path="/meals" element={<Meals />} />
+        </Routes>
+      </AuthProvider>
+    </Router>
   );
 };
 
 export default App;
+

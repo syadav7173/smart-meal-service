@@ -1,23 +1,144 @@
-.home-container {
-    text-align: center;
-    margin-top: 50px;
+/* Home.css */
+
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: Arial, sans-serif;
   }
   
-  .home-container h1 {
-    font-size: 2em;
+  #root {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  
+  .home-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    box-sizing: border-box;
+  }
+  
+  .header h1 {
+    font-size: 1rem; /* Smaller heading */
+    margin: 0;
+  }
+  
+  .header button {
+    margin: 0;
+  }
+  
+  .content {
+    display: flex;
+    flex: 1;
+    justify-content: space-between;
+    height: calc(100% - 50px); /* Adjust based on header height */
+  }
+  
+  .left-column {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    box-sizing: border-box;
+  }
+  
+  .box {
+    border: 1px solid black;
+    margin: 10px;
+    box-sizing: border-box;
+    flex-grow: 1;
+    padding: 10px; /* Add padding inside boxes */
+  }
+  
+  .numbers-section {
+    display: flex;
+    justify-content: space-around;
+    flex: 1;
+    align-items: center;
+  }
+  
+  .number-box {
+    text-align: center;
+  }
+  
+  .week-builder-section {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+  
+  .day-selector {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    align-items: center;
+  }
+  
+  .day-button {
+    padding: 10px;
+    cursor: pointer;
+    border: 1px solid black;
+    background: none;
+    margin: 0 5px;
+  }
+  
+  .day-button.selected {
+    border: 2px solid blue;
+  }
+  
+  .selected-day-plan {
+    margin-top: 20px;
+    width: 100%;
+    text-align: left;
+  }
+  
+  .selected-day-plan .day-plan-section {
     margin-bottom: 20px;
   }
   
-  .home-container button {
-    padding: 0.7em;
-    color: #fff;
-    background-color: #007bff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+  .selected-day-plan h4 {
+    margin: 10px 0;
   }
   
-  .home-container button:hover {
-    background-color: #0056b3;
+  .selected-day-plan ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .selected-day-plan .day-plan-item {
+    margin-bottom: 10px;
+  }
+  
+  .meals-ingredients-section {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    box-sizing: border-box;
+    margin: 10px;
+    flex-grow: 1;
+    padding: 10px; /* Add padding inside boxes */
+  }
+  
+  .items-container {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .meal-item, .ingredient-item {
+    cursor: pointer;
+    padding: 5px;
+    border: 1px solid black;
+    margin: 5px;
+    width: 150px;
+    text-align: left;
   }
   
