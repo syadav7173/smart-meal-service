@@ -1,60 +1,45 @@
-import React, { useState } from 'react';
-import '../styles/WeekBuilder.css';
-import { Ingredient } from '../types';
-import { Meal } from '../types';
+import React from 'react';
+import { Meal } from '../../types';
 
-const daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+interface WeekBuilderProps {
+  selectedDay: string | null;
+  weekPlan: { [key: string]: { meals: Meal[], ingredients: any[] } };
+  selectDay: (day: string) => void;
+}
 
-const WeekBuilder: React.FC = () => {
-  const [weekPlan, setWeekPlan] = useState<{ [key: string]: { meals: Meal[], ingredients: Ingredient[] } }>({
-    Monday: { meals: [], ingredients: [] },
-    Tuesday: { meals: [], ingredients: [] },
-    Wednesday: { meals: [], ingredients: [] },
-    Thursday: { meals: [], ingredients: [] },
-    Friday: { meals: [], ingredients: [] },
-    Saturday: { meals: [], ingredients: [] },
-    Sunday: { meals: [], ingredients: [] }
-  });
-
-  const addMealToDay = (day: string, meal: Meal) => {
-    setWeekPlan({
-      ...weekPlan,
-      [day]: { ...weekPlan[day], meals: [...weekPlan[day].meals, meal] }
-    });
-  };
-
-  const addIngredientToDay = (day: string, ingredient: Ingredient) => {
-    setWeekPlan({
-      ...weekPlan,
-      [day]: { ...weekPlan[day], ingredients: [...weekPlan[day].ingredients, ingredient] }
-    });
-  };
-
-  const savePlan = () => {
-    console.log('Week Plan:', weekPlan);
-  };
+const WeekBuilder: React.FC<WeekBuilderProps> = ({ selectedDay, weekPlan, selectDay }) => {
+  const daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
   return (
-    <div className="week-builder">
-      <h1>Week Builder</h1>
+    <div className="week-builder-section box">
+      <h2>Week Builder</h2>
       <div className="week-grid">
         {daysOfWeek.map(day => (
-          <div key={day} className="day-column">
-            <h2>{day}</h2>
-            <button onClick={() => addMealToDay(day, { id: 1, name: 'Sample Meal', category: 'Walkable', price: 10, user_id: 1 })}>Add Meal</button>
-            <button onClick={() => addIngredientToDay(day, { id: 1, name: 'Sample Ingredient', price: 5, quantity: 1, store: 'Store', user_id: 1 })}>Add Ingredient</button>
-            <ul>
-              {weekPlan[day].meals.map(meal => (
-                <li key={meal.id}>{meal.name}</li>
-              ))}
-              {weekPlan[day].ingredients.map(ingredient => (
-                <li key={ingredient.id}>{ingredient.name}</li>
-              ))}
-            </ul>
+          <div
+            key={day}
+            className={`day-column ${selectedDay === day ? 'selected' : ''}`}
+            onClick={() => selectDay(day)}
+          >
+            <h3 className="day-name">{day}</h3>
+            {selectedDay === day && (
+              <div>
+                <h4>Meals</h4>
+                <ul className="day-plan">
+                  {weekPlan[day]?.meals.map((meal: Meal, index: number) => (
+                    <li key={`${meal.id}-${index}`}>{meal.name}</li>
+                  ))}
+                </ul>
+                <h4>Ingredients</h4>
+                <ul className="day-plan">
+                  {weekPlan[day]?.ingredients.map((ingredient: any, index: number) => (
+                    <li key={`${ingredient.id}-${index}`}>{ingredient.name}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
           </div>
         ))}
       </div>
-      <button onClick={savePlan}>Save Plan</button>
     </div>
   );
 };

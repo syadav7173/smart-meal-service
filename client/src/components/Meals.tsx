@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios, { AxiosResponse } from 'axios';
-import { Meal } from '../types';
+import { Meal } from '../../types';
 
 const Meals: React.FC = () => {
   const [meals, setMeals] = useState<Meal[]>([]);

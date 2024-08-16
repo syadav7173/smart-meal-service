@@ -4,12 +4,6 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-interface JwtPayload {
-  user: {
-    id: number;
-  };
-}
-
 const auth = (req: Request, res: Response, next: NextFunction) => {
   const token = req.header('x-auth-token');
   if (!token) {
@@ -17,8 +11,8 @@ const auth = (req: Request, res: Response, next: NextFunction) => {
   }
 
   try {
-    const decoded = jwt.verify(token, process.env.JWT_SECRET!) as JwtPayload;
-    (req as any).user = decoded.user;
+    const decoded = jwt.verify(token, process.env.JWT_SECRET!);
+    (req as any).user = (decoded as any).user; // Type casting to avoid TypeScript errors
     next();
   } catch (err) {
     res.status(401).json({ msg: 'Token is not valid' });

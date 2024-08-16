@@ -24,10 +24,11 @@ const authenticateUser = async (email: string, password: string) => {
   const payload = {
     user: {
       id: user.id,
+      email: user.email
     },
   };
   const token = jwt.sign(payload, process.env.JWT_SECRET!, { expiresIn: '1h' });
-  return token;
+  return { id: user.id, email: user.email, token };
 };
 
 export { registerUser, authenticateUser };

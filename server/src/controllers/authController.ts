@@ -20,8 +20,8 @@ const register = async (req: Request, res: Response) => {
 const login = async (req: Request, res: Response) => {
   const { email, password } = req.body;
   try {
-    const token = await authenticateUser(email, password);
-    res.json({ token });
+    const { id, token } = await authenticateUser(email, password);
+    res.json({ id, email, token });
   } catch (err: unknown) {
     if (err instanceof Error) {
       console.error('Error message:', err.message);

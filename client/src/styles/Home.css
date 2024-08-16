@@ -1,5 +1,3 @@
-/* Home.css */
-
 body, html {
     margin: 0;
     padding: 0;
@@ -55,7 +53,6 @@ body, html {
     margin: 10px;
     box-sizing: border-box;
     flex-grow: 1;
-    padding: 10px; /* Add padding inside boxes */
   }
   
   .numbers-section {
@@ -72,50 +69,41 @@ body, html {
   .week-builder-section {
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
     flex: 1;
+    padding: 10px;
   }
   
-  .day-selector {
+  .week-grid {
     display: flex;
-    justify-content: space-around;
+    justify-content: flex-start;
     width: 100%;
-    align-items: center;
+    flex-grow: 1;
   }
   
-  .day-button {
+  .day-column {
     padding: 10px;
     cursor: pointer;
-    border: 1px solid black;
-    background: none;
-    margin: 0 5px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
   }
   
-  .day-button.selected {
+  .day-column.selected {
     border: 2px solid blue;
   }
   
-  .selected-day-plan {
-    margin-top: 20px;
-    width: 100%;
-    text-align: left;
-  }
-  
-  .selected-day-plan .day-plan-section {
-    margin-bottom: 20px;
-  }
-  
-  .selected-day-plan h4 {
-    margin: 10px 0;
-  }
-  
-  .selected-day-plan ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  
-  .selected-day-plan .day-plan-item {
+  .day-name {
+    border: 1px solid black;
+    padding: 5px;
     margin-bottom: 10px;
+    font-size: 0.8rem; /* Smaller font size */
+  }
+  
+  .day-plan {
+    margin: 0;
+    padding: 0;
+    list-style: none;
   }
   
   .meals-ingredients-section {
@@ -125,12 +113,6 @@ body, html {
     box-sizing: border-box;
     margin: 10px;
     flex-grow: 1;
-    padding: 10px; /* Add padding inside boxes */
-  }
-  
-  .items-container {
-    display: flex;
-    flex-wrap: wrap;
   }
   
   .meal-item, .ingredient-item {
@@ -142,3 +124,7 @@ body, html {
     text-align: left;
   }
   
+  .item-grid {
+    display: flex;
+    flex-wrap: wrap;
+  }

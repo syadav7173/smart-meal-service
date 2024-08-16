@@ -22,5 +22,5 @@
   },
   "include": [
     "src"
-  ]
+, "src/types.ts", "../server/src/index.ts"  ]
 }

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios, { AxiosResponse } from 'axios';
-import { Ingredient } from '../types';
+import { Ingredient } from '../../types';
 
 const Ingredients: React.FC = () => {
   const [ingredients, setIngredients] = useState<Ingredient[]>([]);
